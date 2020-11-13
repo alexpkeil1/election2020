@@ -54,7 +54,7 @@ function tocsv(series, state;resfile="/tmp/votes.txt", mode="w")
         trumpshare += share
         trump += round(votes*share, digits=3)
       end
-      thirdshare = round(1.0 - bidenshare - trumpshare, digits=3) 
+      thirdshare = (bidenshare + trumpshare) == 0.0 ? 0.0 : round(1.0 - bidenshare - trumpshare, digits=3) 
       third += round(votes*share, digits=3)    
     end
     res = hcat(state, votes, date, time, source, @sprintf("%.3f", biden), @sprintf("%.3f", trump), 
